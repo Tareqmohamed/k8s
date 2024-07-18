@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vol-po
+spec:
+  containers:
+    - name: cont-1
+      image: alpine
+      volumeMounts:
+        - name: vol
+          mountPath: /cont-1
+      command:
+        - sleep
+        - "3600"
+    - name: cont-2
+      image: alpine
+      volumeMounts:
+        - name: vol
+          mountPath: /cont-2
+      command:
+        - sleep
+        - "3600"
+  volumes:
+    - name: vol
+      emptyDir: {}

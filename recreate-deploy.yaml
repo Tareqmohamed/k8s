@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server-deb
+  labels:
+    app: web-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: web-server-rs
+      labels:
+        app: web-server
+    spec:
+      containers:
+        - name: web-server-po
+          image: tareqmohamed/k8s-web-server:2.0.0
+          ports:
+            - containerPort: 2646
